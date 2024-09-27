@@ -1,6 +1,6 @@
-import DashBoardNav from "@/components/dashboard/DashBoardHeader";
-import MobileNav from "@/components/dashboard/MobileNav";
-import SideBar from "@/components/dashboard/SideBar";
+import DashBoardNav from "@/components/dashboard/ui/DashBoardHeader";
+import MobileNav from "@/components/dashboard/ui/MobileNav";
+import SideBar from "@/components/dashboard/ui/SideBar";
 import { ReactNode } from "react";
 
 
