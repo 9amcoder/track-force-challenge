@@ -28,11 +28,13 @@ const useSiteStore = create<ISiteStore>((set) => ({
     set({ sitesLoading: true, error: null });
     try {
       const { data } = await get<Site[]>("/sites");
-      console.log(data);
-      set({ sites: data, sitesLoading: false });
+      set({ sites: data });
     } catch (error) {
       const errorMessage = handleApiError(error as AxiosError);
-      set({ error: errorMessage, sitesLoading: false });
+      set({ error: errorMessage });
+      throw new Error(errorMessage);
+    }finally{
+      set({ sitesLoading: false });
     }
   },
 
@@ -45,10 +47,13 @@ const useSiteStore = create<ISiteStore>((set) => ({
     set({ siteLoading: true, error: null });
     try {
       const { data } = await get<Site>(`/sites/${id}`);
-      set({ site: data, siteLoading: false });
+      set({ site: data });
     } catch (error) {
       const errorMessage = handleApiError(error as AxiosError);
-      set({ error: errorMessage, siteLoading: false });
+      set({ error: errorMessage });
+      throw new Error(errorMessage);
+    } finally {
+      set({ siteLoading: false });
     }
   },
 }));
