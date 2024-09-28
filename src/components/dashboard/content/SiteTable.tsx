@@ -2,7 +2,6 @@ import React from "react";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -29,7 +28,6 @@ const formatAddress = (address: {
 const SiteTable: React.FC<TableProps> = ({ sites }) => {
   return (
     <Table>
-      <TableCaption>A list of sites</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[20px] md:w-[100px]" aria-label="Image"></TableHead>
