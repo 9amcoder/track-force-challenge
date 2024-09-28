@@ -10,7 +10,9 @@ interface ISiteStore {
   sitesLoading: boolean;
   siteLoading: boolean;
   error: string | null;
-  fetchSites: () => void;
+  currentPage: number;
+  totalPages: number;
+  fetchSites: (page?: number, limit?: number, sort?: string, order?: string) => void;
   fetchSite: (id: string) => void;
 }
 
@@ -20,29 +22,24 @@ const useSiteStore = create<ISiteStore>((set) => ({
   sitesLoading: false,
   siteLoading: false,
   error: null,
+  currentPage: 1,
+  totalPages: 1,
 
-  /**
-   * Fetches the list of sites from the API.
-   */
-  fetchSites: async () => {
+  fetchSites: async (page = 1, limit = 10, sort = "createdAt", order = "asc") => {
     set({ sitesLoading: true, error: null });
     try {
-      const { data } = await get<Site[]>("/sites");
-      set({ sites: data });
+      const { data, headers } = await get<Site[]>(`/sites?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`);
+      const totalPages = Math.ceil(Number(headers['x-total-count']) / limit);
+      set({ sites: data, currentPage: page, totalPages });
     } catch (error) {
       const errorMessage = handleApiError(error as AxiosError);
       set({ error: errorMessage });
       throw new Error(errorMessage);
-    }finally{
+    } finally {
       set({ sitesLoading: false });
     }
   },
 
-  /**
-   * Fetches a single site by its ID from the API.
-   * 
-   * @param {string} id - The ID of the site to fetch.
-   */
   fetchSite: async (id: string) => {
     set({ siteLoading: true, error: null });
     try {
