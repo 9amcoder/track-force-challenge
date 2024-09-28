@@ -1,17 +1,11 @@
-import { Boxes, Home, UserCog } from "lucide-react";
+import { Home, UserCog } from "lucide-react";
 
 export const ROUTES = [
   {
-    label: "Dashboard",
+    label: "Scheduling",
     icon: Home,
-    href: "/dashboard",
+    href: "/scheduling",
     color: "text-sky-500",
-  },
-  {
-    label: "Service Control",
-    icon: Boxes,
-    href: "/service",
-    color: "text-violet-500",
   },
   {
     label: "Account Settings",
