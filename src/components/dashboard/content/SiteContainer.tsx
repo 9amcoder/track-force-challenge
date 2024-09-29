@@ -4,6 +4,7 @@ import SiteTable from "./SiteTable";
 import SkeltonLoader from "../ui/SkeletonLoader";
 import PaginationContainer from "../ui/Pagination";
 import DropdownFilter from "../ui/DropdownFilter";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface SiteContainerProps {
   sites: Site[];
@@ -11,6 +12,8 @@ interface SiteContainerProps {
   error: string | null;
   currentPage: number;
   totalPages: number;
+  router: AppRouterInstance;
+  isMobile?: boolean;
   onPageChange: (page: number) => void;
   onSortChange: (sort: string, order: string) => void;
 }
@@ -21,6 +24,8 @@ const SiteContainer: React.FC<SiteContainerProps> = ({
   error,
   currentPage,
   totalPages,
+  router,
+  isMobile,
   onPageChange,
   onSortChange,
 }) => {
@@ -38,18 +43,18 @@ const SiteContainer: React.FC<SiteContainerProps> = ({
 
   return (
     <>
-    <div className="text-left pb-2">
-    <DropdownFilter onSortChange={onSortChange} />
-  </div>
-    <div>
-    
-      <SiteTable sites={sites} />
-      <PaginationContainer
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={onPageChange}
-      />
-    </div>
+      <div className="text-left pb-2">
+        <DropdownFilter onSortChange={onSortChange} />
+      </div>
+      <div className="pb-10">
+        <SiteTable sites={sites} router={router} isMobile={isMobile} />
+        <PaginationContainer
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+          pageSize={isMobile ? 3 : 5}
+        />
+      </div>
     </>
   );
 };
