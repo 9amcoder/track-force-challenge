@@ -23,7 +23,7 @@ const SideBar: React.FC<SideBarProps> = ({
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-white text-black border drop-shadow-2xl">
       <div className="px-3 py-2 flex-1">
-        <Link href="/dashboard" className="flex items-center pl-3 mb-14">
+        <Link href="/scheduling" className="flex items-center pl-3 mb-14">
           <div className="relative w-30 h-30 mr-4">
             <Image
               src={logo}
