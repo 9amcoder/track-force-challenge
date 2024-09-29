@@ -74,3 +74,9 @@ root/
 - ShadCn UI: Provides ready-made components, speeding up UI development.
 - Three.js: Adds 3D rendering for enhanced visual elements.
 - Zustand: Lightweight state management with minimal boilerplate.
+  
+## Api data structure
+![json4u-193553](https://github.com/user-attachments/assets/6d8345f9-d9a5-4519-99a6-42ca63c4be77)
+
+
+
