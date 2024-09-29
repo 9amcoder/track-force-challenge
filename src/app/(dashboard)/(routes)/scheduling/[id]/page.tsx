@@ -25,6 +25,9 @@ const SiteDetailsPage: React.FC = () => {
 
   return (
     <div>
+        <div className="text-center mt-5">
+          <h1 className="text-md md:text-lg">Main Contact</h1>
+        </div>
       <CardComponent site={site} isMobile={isMobile} />
     </div>
   );
