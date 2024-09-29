@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import formatAddress from "@/helper/addressFormatter";
 import Site from "@/types/site";
 import { Separator } from "@radix-ui/react-dropdown-menu";
-import { Briefcase, ChevronLeft, Mail, Phone } from "lucide-react";
+import { ArrowLeft, Briefcase, Mail, Phone } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface CardProps {
@@ -22,10 +22,10 @@ const CardComponent: React.FC<CardProps> = ({ site }) => {
         className="absolute top-1 left-1 md:top-2 md:left-2"
         onClick={() => router.back()}
       >
-        <ChevronLeft className="h-4 w-4" />
+        <ArrowLeft size={20} />
       </Button>
       <CardHeader className="text-center">
-        <CardTitle>
+        <CardTitle className="text-lg md:text-xl">
           <div className="flex items-center justify-center">
             {site?.contacts?.main?.firstName} {site?.contacts?.main?.lastName}
           </div>
@@ -49,7 +49,6 @@ const CardComponent: React.FC<CardProps> = ({ site }) => {
           </div>
           <Separator className="mt-5 w-full" />
           <div className="flex items-start justify-center text-sm md:text-lg ">
-            {/* <House size={30} className="mr-1" /> */}
             {formatAddress(site?.address)}
           </div>
         </div>
