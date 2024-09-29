@@ -6,6 +6,7 @@ import { useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ROUTES } from "@/types/routeLabel";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type MobileNavProps = {
   companyName?: string;
@@ -43,7 +44,12 @@ const MobileNav: React.FC<MobileNavProps> = ({ companyName }) => {
             </Button>
           </div>
           {formattedPathname}
-          <Button variant="ghost">ME</Button>
+          <Button variant="ghost" size="icon">
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+          </Button>
         </div>
         <div
           className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
