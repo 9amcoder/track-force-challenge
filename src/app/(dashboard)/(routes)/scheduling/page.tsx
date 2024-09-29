@@ -2,12 +2,17 @@
 import React, { useEffect, useState } from "react";
 import SiteContainer from "@/components/dashboard/content/SiteContainer";
 import useSiteStore from "@/store/siteStore";
+import { useRouter } from "next/navigation";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const Dashboard: React.FC = () => {
-  const { sites, sitesLoading, error, fetchSites, currentPage, totalPages } = useSiteStore();
+  const { sites, sitesLoading, error, fetchSites, currentPage, totalPages } =
+    useSiteStore();
   const [page, setPage] = useState(currentPage);
   const [sort, setSort] = useState("createdAt");
   const [order, setOrder] = useState("asc");
+  const router = useRouter();
+  const { isMobile } = useMediaQuery();
 
   useEffect(() => {
     fetchSites(page, 10, sort, order);
@@ -24,13 +29,15 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="mt-2 ml-2">
-      <h1 className="text-center pb-2"> Sites </h1>
+      <h1 className="text-center pb-2 text-md md:text-2xl bold"> Sites </h1>
       <SiteContainer
         sites={sites}
         siteLoading={sitesLoading}
         error={error}
         currentPage={currentPage}
         totalPages={totalPages}
+        router={router}
+        isMobile={isMobile}
         onPageChange={handlePageChange}
         onSortChange={handleSortChange}
       />
