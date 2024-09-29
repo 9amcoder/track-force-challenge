@@ -1,8 +1,8 @@
 "use client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useParams, usePathname } from "next/navigation";
 
 const DashBoardNav: React.FC = () => {
-//   const { user, isLoaded } = useUser();
   let pathname = usePathname();
   const params = useParams();
 
@@ -21,9 +21,12 @@ const DashBoardNav: React.FC = () => {
       </div>
       <div className="flex items-center space-x-4">
         <div className="text-[#282458]">
-          {/* {isLoaded ? `Hello, ${user?.firstName || "Guest"}` : "Loading..."} */}
+          Hello, User!
         </div>
-        {/* <UserButton afterSignOutUrl="/" /> */}
+        <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
       </div>
     </div>
   );
