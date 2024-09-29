@@ -13,20 +13,22 @@ interface PaginationContainerProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  pageSize?: number; // customizable page size
 }
 
 const PaginationContainer: React.FC<PaginationContainerProps> = ({
   currentPage,
   totalPages,
   onPageChange,
+  pageSize = 5, // Default value is 5
 }) => {
-  const [pageRange, setPageRange] = useState([1, 5]);
+  const [pageRange, setPageRange] = useState([1, pageSize]);
 
   useEffect(() => {
-    const start = Math.floor((currentPage - 1) / 5) * 5 + 1;
-    const end = Math.min(start + 4, totalPages);
+    const start = Math.floor((currentPage - 1) / pageSize) * pageSize + 1;
+    const end = Math.min(start + pageSize - 1, totalPages);
     setPageRange([start, end]);
-  }, [currentPage, totalPages]);
+  }, [currentPage, totalPages, pageSize]);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -53,7 +55,7 @@ const PaginationContainer: React.FC<PaginationContainerProps> = ({
   };
 
   return (
-    <Pagination>
+    <Pagination className="mt-3">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
