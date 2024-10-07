@@ -45,8 +45,8 @@ const SiteTable: React.FC<TableProps> = ({ sites, router, isMobile }) => {
           >
             <TableCell>
               <Avatar>
-                <AvatarImage src={site.images[0] || ""} alt="Site Image" />
-                <AvatarFallback>SI</AvatarFallback>
+                <AvatarImage src={site.images?.[0] || ""} alt="Site Image" />
+                <AvatarFallback>N/A</AvatarFallback>
               </Avatar>
             </TableCell>
             {isMobile ? (
